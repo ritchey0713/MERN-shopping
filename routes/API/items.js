@@ -5,9 +5,10 @@ const router = express.Router();
 
 const Item = require('../../models/Item');
 
-// @route GET api/items
+// @route GET API/items
 // @desc Get All Items
 // @access Public
+
 router.get('/', (request, response) => {
   Item.find()
   .sort({ date: -1 })
@@ -17,6 +18,17 @@ router.get('/', (request, response) => {
 
 // @route POST api/items
 // @desc Create A Item
+
+router.get('/', (req, res) => {
+  Item.find()
+  .sort({ date: -1 })
+    .then(items => res.json(items))
+    .catch(err => console.log(err))
+});
+
+// @route POST API/items
+// @desc Create Items
+
 // @access Public
 router.post('/', (req, res) => {
   const newItem = new Item({
@@ -28,6 +40,7 @@ router.post('/', (req, res) => {
   .catch(err => console.log(err))
 });
 
+
 // @route DELETE api/items
 // @desc Delete A Item
 // @access Public
@@ -37,6 +50,7 @@ router.delete('/:id', (req, res) => {
     .then(() => res.json({ success: true})))
     .catch(err => res.status(404).json({success: false }))
     })
+
 
 
 
