@@ -3,9 +3,6 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
 const items = require('./routes/api/items')
-
-
-
 const app = express();
 
 //Bodyparser middleware
